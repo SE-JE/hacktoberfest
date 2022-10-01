@@ -1,4 +1,4 @@
 # Hacktoberfest
 
-- whistlist open source project
-- - [x] next boiler place [next-light]([https://github.com/SE-JE/next-light])
+- whistlist open source boiler plate
+- - [x] next boiler plate [next-light]([https://github.com/SE-JE/next-light])
