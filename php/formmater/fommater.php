@@ -20,15 +20,11 @@ function checkNumber($number)
 {
     $ex_number = explode('.', $number);
 
-    if (isset($ex_number[1])) {
-        if ($ex_number[1] == 00) {
-            return number_format($number);
-        } else {
-            return floatDotFormat($number);
-        }
+    if (!isset($ex_number[1]) || $ex_number[1] == 00) {
+         return number_format($number);
     }
 
-    return number_format($number);
+    return floatDotFormat($number);
 }
 
 function replaceDot($amount)
@@ -53,18 +49,18 @@ function thousandFormater(int $number)
 
 function thousands_currency_format($num)
 {
-    if ($num > 1000) {
-        $x = round($num);
-        $x_number_format = number_format($x);
-        $x_array = explode(',', $x_number_format);
-        $x_parts = ['k', 'm', 'b', 't'];
-        $x_count_parts = count($x_array) - 1;
-        $x_display = $x;
-        $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
-        $x_display .= $x_parts[$x_count_parts - 1];
-
-        return $x_display;
+    if ($num <= 1000) {
+        return $num;
     }
+    
+    $x = round($num);
+    $x_number_format = number_format($x);
+    $x_array = explode(',', $x_number_format);
+    $x_parts = ['k', 'm', 'b', 't'];
+    $x_count_parts = count($x_array) - 1;
+    $x_display = $x;
+    $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+    $x_display .= $x_parts[$x_count_parts - 1];
 
-    return $num;
+    return $x_display;    
 }
